@@ -2,6 +2,8 @@
 
 This is the source code for an implementation of infinite scrolling for images, which uses the Intersection Observer API to trigger loading of new images when the user scrolls to the bottom of the page.
 
+[Live Demo](https://endearing-basbousa-a73c36.netlify.app/)
+
 ## Pages, Components, and Hooks
 
 The source code is organized as follows:
