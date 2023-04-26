@@ -1,37 +1,32 @@
-# Welcome to the Frontend Engineer Task!
+# Infinite Scroll for Images
 
-This README file contains the instructions you will need to complete your task in the form of a User Story – the format regularly used by Hotjar engineers in our weekly sprints.
+This is the source code for an implementation of infinite scrolling for images, which uses the Intersection Observer API to trigger loading of new images when the user scrolls to the bottom of the page.
 
-## Instructions
+## Pages, Components, and Hooks
 
-This `main` branch already contains code which you will use for your task. Please add any new code to a new feature branch. When you’re done with the task, please submit a GitHub pull request (PR) to `main`.
+The source code is organized as follows:
 
-If you cannot satisfy all the acceptance criteria within the given timeframe, simply prioritise what you feel is important and mention what you have excluded and why in your README file (src/README.md).
+### Pages
 
-For the parts of the task which you feel are unclear, we encourage you to make your own assumptions as long as they are documented in your README file (src/README.md). However, if you have a question or concern that is blocking you from completing the work, please reach out to us via email.
+[index](./pages/index.tsx) - Main page of the application. Here the Intersection Obeserver is used to follow whether the last loaded picture has come into view and then it triggers the increase to offset state, which causes a rerender and useImages hook is called with a new offset, providing us with a new set of images.
 
-A week after your task start date, a Hotjar engineer will review your PR and you will receive an email within 48 hours notifying you of the next steps.
+### Components
 
-## User Story
+[Cards](./components/Card.tsx) - A component that displays an image, along with a title and text. It takes url and id of image as props, it takes a useRef reference as well so the ref could be attached to the last element loaded.
 
-As a user, I want to view all the images available in the form of a list that will automatically load more items as I scroll down.
+### Hooks
 
-## Design
+[useImages](./hooks/useImages.ts) - A custom hook that fetches images from an API endpoint and returns a state object containing the current list of images and booleans which indicate whether if it's sill loading, if there was an error and if there are any more images to load. It takes offset and limit as inputs and attaches the newly provided images to the ones it already had in previous state.
 
-🖼️ [Cards design](./design.png) - base design
+### Testing
 
-🖼️ ✏️ [Cards design with annotations](./design-with-annotations.png) - annotated design with dimensions and element properties
+[test](./tests/) - This project includes unit tests for the implementation, which can be found in the tests folder. Test files are named according to the files they are testing.
 
-## Acceptance Criteria
+## Getting Started
 
-- The list should have an infinite scroll mechanism that loads images until there is no more content;
-- The list should start requesting the next set of images before the user reaches the bottom of the page;
-- The list should request 20 images per 'load', and should show 4 images per row;
-- The application should be reasonably tested (70%+ test coverage);
-- The approach and any decisions made should be explained and elabored upon on the MR or README.md;
-- No external packages should be added to the project.
+To run the project locally:
 
-## Important Notes
-
-- Commits and commit messages will be part of the task review;
-- While there is a supplied design that shows the intended experience and visuals for the feature itself, please focus on the acceptance criteria first and foremost.
+1.  Clone this repository.
+2.  Install dependencies by running npm install in the project root directory.
+3.  Run the development server using npm run dev.
+4.  Open http://localhost:3000 in your browser.
